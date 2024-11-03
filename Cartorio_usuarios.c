@@ -138,6 +138,7 @@ int main() //função principal
 		printf("\t1: Consultar usuários\n");
 		printf("\t2: Registro de usuários\n");
 		printf("\t3: Exclusão de usuários\n\n");
+		printf("\t4: Sair do sistema\n\n");
 		printf("Opção: "); //fim do menu
 	
 		scanf("%d", &opcao); //identificar a resposta do usuario e armazenar na variavel
@@ -157,6 +158,11 @@ int main() //função principal
 			case 3: 
 			excluir();
 			break; 
+			
+			case 4:
+			printf("Obrigado por utilizar o sistema!\n");
+			return 0;
+			break;
 			
 			default:
 			printf("Essa opção não está disponivel!\n\n");
