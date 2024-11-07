@@ -15,7 +15,7 @@ int consulta()
 	
 	printf("\tConsulte o usuário desejado.\n\n");
 	printf("Digite o CPF do usuário: ");
-	scanf("%s", cpf);
+	scanf("%s", cpf); //alocando a resposta do usuario na variavel/string
 	
 	system("cls"); //limpar mensagens anteriores para melhor visualização das seguintes
 	
@@ -124,50 +124,82 @@ int main() //função principal
 {
 	
 	int opcao= 0; //definindo a variavel
-	int repetir= 1;
+	int laco= 1;
+	char senhadigitada[10]= "a"; //adicionando uma senha de segurança de acesso
+	char username[10]; //adicionando um login de acesso
+	int tentativas= 3; //numero de tentativas de acesso 
 	
-	for(repetir=1; repetir=1;) //introduzindo repetição no programa
+	setlocale(LC_ALL, "Portuguese"); //especificação do idioma portugues nos textos
+	
+	printf("PLATAFORMA DE GERENCIAMENTO DE USUÁRIOS - EBAC\n\n");
+	printf("Acesso de administrador!\n\n");
+	
+	while(tentativas > 0) 
 	{
-	
-		system("cls"); //limpar mensagens anteriores quando o programa recomeçar
 		
-		setlocale(LC_ALL, "Portuguese"); //especificação do idioma portugues nos textos
-
-		printf("   PLATAFORMA DE GERENCIAMENTO DE USUÁRIOS - EBAC\n\n"); //inicio do menu
-		printf("   Escolha uma das opções no menu:\n\n");
-		printf("\t1: Consultar usuários\n");
-		printf("\t2: Registro de usuários\n");
-		printf("\t3: Exclusão de usuários\n\n");
-		printf("\t4: Sair do sistema\n\n");
-		printf("Opção: "); //fim do menu
+		printf("Digite o nome de usuário: ");
+		scanf("%s", username);
+		printf("Digite a senha: ");
+		scanf("%s", senhadigitada); //alocando a resposta do usuario na variavel/string
 	
-		scanf("%d", &opcao); //identificar a resposta do usuario e armazenar na variavel
-	
-		system("cls"); //limpar mensagens anteriores para melhor visualização das seguintes
-		
-		switch(opcao) //opereador logico para seleção das opções do menu
+		if(strcmp(username, "alex") == 0 && strcmp(senhadigitada, "admin") == 0) //comparando as variaveis 
 		{
-			case 1: //inicio da seleção
-			consulta();
-			break;
-			
-			case 2:
-			registro();
-			break;
 		
-			case 3: 
-			excluir();
-			break; 
+			for(laco=1; laco=1;) //introduzindo repetição no programa
+			{	
+		
+				system("cls"); //limpar mensagens anteriores quando o programa recomeçar
+		
+				setlocale(LC_ALL, "Portuguese"); //especificação do idioma portugues nos textos
+
+				printf("   PLATAFORMA DE GERENCIAMENTO DE USUÁRIOS - EBAC\n\n"); //inicio do menu
+				printf("   Escolha uma das opções no menu:\n\n");
+				printf("\t1: Consultar usuários\n");
+				printf("\t2: Registro de usuários\n");
+				printf("\t3: Exclusão de usuários\n\n");
+				printf("\t4: Sair do sistema\n\n");
+				printf("Opção: "); //fim do menu
+	
+				scanf("%d", &opcao); //identificar a resposta do usuario e armazenar na variavel
+	
+				system("cls"); //limpar mensagens anteriores para melhor visualização das seguintes
+		
+				switch(opcao) //opereador logico para seleção das opções do menu
+				{
+					case 1: //inicio da seleção
+					consulta();
+					break;
+				
+					case 2:
+					registro();
+					break;
+		
+					case 3: 
+					excluir();
+					break; 
 			
-			case 4:
-			printf("Obrigado por utilizar o sistema!\n");
-			return 0;
-			break;
+					case 4:
+					printf("Obrigado por utilizar o sistema!\n");
+					return 0;
+					break;
 			
-			default:
-			printf("Essa opção não está disponivel!\n\n");
-			system("pause");
-			break;
-		} //fim da seleção
+					default:
+					printf("Essa opção não está disponivel!\n\n");
+					system("pause");
+					break;
+				}	 //fim da seleção
+			}
+		} 
+		else 
+		{	
+			tentativas--;
+			printf("Nome de usuário ou senha incorretos!\n\nVocê tem %d tentativas restantes.\n", tentativas);
+			
+			if(tentativas == 0) 
+			{
+				printf("Número máximo de tentativas atingido. Saindo do sistema.\n");
+				return 0;
+			}
+		}	
 	}
 }
